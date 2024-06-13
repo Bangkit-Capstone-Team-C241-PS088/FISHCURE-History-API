@@ -19,7 +19,7 @@ request payload data :
 ```
 {
     "email" : "[user email]",
-    "desease_id" : "[id penyakit]"
+    "desease_name" : "[nama penyakit]"
     "akurasi" : "[akurasi scan]"
 }
 ```
@@ -36,7 +36,7 @@ request payload data :
         "data": {
             "email": "[user email]",
             "date_time": "[date time scan diambil]",
-            "desease_id": "[id penyakit]",
+            "desease_name": "[nama penyakit]",
             "akurasi": "[akurasi scan]"
         }
     }
@@ -45,12 +45,21 @@ request payload data :
 
 ---
 
-## GET History - Method : GET
+## GET History - Method : POST
 
 url + query
 
 ```
-/getHistory?email=[user email]&dateTime=[date time scan diambil]
+/getHistory
+```
+
+request payload data :
+
+```
+{
+    "email" : "[email user]",
+    "dateTime" : "[waktu scan dengan format YY-MM-DD Hour-Minuite-Second]"
+}
 ```
 
 ### list response dari server :
@@ -65,7 +74,7 @@ url + query
         "data": {
             "email": "[user email]",
             "date_time": "[date time scan diambil]",
-            "desease_id": "[id penyakit]",
+            "desease_name": "[nama penyakit]",
             "akurasi": "[akurasi scan]"
         }
     }
@@ -83,12 +92,20 @@ url + query
 
 ---
 
-## GET ALL History - Method : GET
+## GET ALL History - Method : POST
 
 url + query
 
 ```
-/getHistory?email=[user email]
+/getHistory
+```
+
+request payload data :
+
+```
+{
+    "email" : "[email user]"
+}
 ```
 
 ### list response dari server :
@@ -104,19 +121,19 @@ url + query
             {
                 "email": "[user email]",
                 "date_time": "[date time scan diambil]",
-                "desease_id": "[id penyakit]",
+                "desease_name": "[nama penyakit]",
                 "akurasi": "[akurasi scan]"
             },
             {
                 "email": "[user email]",
                 "date_time": "[date time scan diambil]",
-                "desease_id": "[id penyakit]",
+                "desease_name": "[nama penyakit]",
                 "akurasi": "[akurasi scan]"
             },
             {
                 "email": "[user email]",
                 "date_time": "[date time scan diambil]",
-                "desease_id": "[id penyakit]",
+                "desease_name": "[nama penyakit]",
                 "akurasi": "[akurasi scan]"
             }
         ]

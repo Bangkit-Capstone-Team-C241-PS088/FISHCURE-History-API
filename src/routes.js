@@ -9,13 +9,13 @@ const routes = [
     },
     {
         // mengambil sebuah data scan dari database history
-        method: 'GET',
+        method: 'POST',
         path: '/getHistory',
         handler: getHistoryhandler
     },
     {
         // mengambil semua data scan dari database history
-        method: 'GET',
+        method: 'POST',
         path: '/getAllHistory',
         handler: getAllHistoryhandler
     },

@@ -4,12 +4,12 @@ const { insertQuery, selectAQuery } = require("./db_query");
 
 const saveHistoryHandler = async (request, h) => {
     try {
-        // const { email, indikasi, akurasi, gejala} = request.payload;
-        const testData = {
-            email: 'ivankurniawan474@gmail.com',
-            desease_id: '3',
-            akurasi: '0,99'
-        };
+        const { email, disease_name, akurasi } = request.payload;
+        // const testData = {
+        //     email: 'ivankurniawan474@gmail.com',
+        //     disease_name: 'aeromonas',
+        //     akurasi: '0,99'
+        // };
 
         // konversi date js ke format SQL
         const date = new Date();
@@ -17,10 +17,10 @@ const saveHistoryHandler = async (request, h) => {
 
         // deklarasi data
         const data = {
-            email: testData.email,
+            email: email,
             date_time: dateTimeSql,
-            desease_id: testData.desease_id,
-            akurasi: testData.akurasi
+            disease_name: disease_name,
+            akurasi: akurasi
         }
 
         // simpan data ke database
@@ -44,7 +44,7 @@ const saveHistoryHandler = async (request, h) => {
 
 const getHistoryhandler = async (request, h) => {
     try {
-        const { email, dateTime } = request.query
+        const { email, dateTime } = request.payload
         // example format for dateTime = 2024-05-29T11:12:15Z
         // const dateTimeSql = new Date(dateTime).toISOString().slice(0, 19).replace('T', ' ');
 
@@ -82,7 +82,7 @@ const getHistoryhandler = async (request, h) => {
 
 const getAllHistoryhandler = async (request, h) => {
     try {
-        const { email } = request.query
+        const { email } = request.payload
 
         const sql = `SELECT * FROM history_scan WHERE email = '${email}'`;
         const result = await selectAQuery(sql);
