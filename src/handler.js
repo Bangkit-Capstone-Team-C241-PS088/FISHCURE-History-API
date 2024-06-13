@@ -1,4 +1,5 @@
 require('dotenv').config();
+const moment = require('moment-timezone');
 
 const { insertQuery, selectAQuery } = require("./db_query");
 
@@ -13,7 +14,9 @@ const saveHistoryHandler = async (request, h) => {
 
         // konversi date js ke format SQL
         const date = new Date();
-        const dateTimeSql = date.toISOString().slice(0, 19).replace('T', ' ');
+        const jakartaMoment = moment.tz(date, "Asia/Jakarta");
+        const dateTimeSql = jakartaMoment.format('YYYY-MM-DD HH:mm:ss');
+        // const dateTimeSql = date.toISOString().slice(0, 19).replace('T', ' ');
 
         // deklarasi data
         const data = {
@@ -54,6 +57,7 @@ const getHistoryhandler = async (request, h) => {
         if (result[0] !== undefined) {
             const data = result[0];
 
+            // data.date_time = new Date(data.date_time).toISOString().slice(0, 19).replace('T', ' ');
             data.date_time = data.date_time.toISOString().slice(0, 19).replace('T', ' ');
 
             const response = h.response({
